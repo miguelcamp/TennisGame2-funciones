@@ -4,8 +4,6 @@ public class TennisGame2 implements TennisGame
     public int P1point = 0;
     public int P2point = 0;
     
-    public String P1res = "";
-    public String P2res = "";
     private String player1Name;
     private String player2Name;
 
@@ -17,14 +15,30 @@ public class TennisGame2 implements TennisGame
     public String getScore(){
         String score = "";
         score = normal();
-        score = tie(score);
-        score = deuce(score);
-        
-        score = advantage(score);
+		if (isTie())
+		    score = getLiteral(P1point)+"-All";
+		if (isDeuce())
+			score = "Deuce";
+		if (isP1Advantage())
+		    score = "Advantage player1";
+		if (isP2Advantage())
+		    score = "Advantage player2";
         
         score = win(score);
         return score;
     }
+
+	private boolean isP2Advantage() {
+		return P2point > P1point && P1point >= 3;
+	}
+
+	private boolean isP1Advantage() {
+		return P1point > P2point && P2point >= 3;
+	}
+
+	private boolean isDeuce() {
+		return P1point==P2point && P1point>=3;
+	}
 
 	private String win(String score) {
 		if (P1point>=4 && P2point>=0 && (P1point-P2point)>=2)
@@ -39,12 +53,12 @@ public class TennisGame2 implements TennisGame
 	}
 
 	private String advantage(String score) {
-		if (P1point > P2point && P2point >= 3)
+		if (isP1Advantage())
         {
             score = "Advantage player1";
         }
         
-        if (P2point > P1point && P1point >= 3)
+        if (isP2Advantage())
         {
             score = "Advantage player2";
         }
@@ -72,23 +86,21 @@ public class TennisGame2 implements TennisGame
 	}
 
 	private String deuce(String score) {
-		if (P1point==P2point && P1point>=3)
+		if (isDeuce())
             score = "Deuce";
 		return score;
 	}
 
 	private String tie(String score) {
-		if (P1point == P2point && P1point < 4)
+		if (isTie())
         {
-            if (P1point==0)
-                score = "Love";
-            if (P1point==1)
-                score = "Fifteen";
-            if (P1point==2)
-                score = "Thirty";
-            score += "-All";
+            score = getLiteral(P1point)+"-All";
         }
 		return score;
+	}
+
+	private boolean isTie() {
+		return P1point == P2point && P1point < 4;
 	}
     
     public void SetP1Score(int number){
