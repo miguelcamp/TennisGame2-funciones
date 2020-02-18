@@ -92,21 +92,11 @@ public class TennisGame2 implements TennisGame
 	}
     
     public void SetP1Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            P1Score();
-        }
-            
+    	P1point+=number;
     }
     
     public void SetP2Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            P2Score();
-        }
-            
+        P2point+=number;
     }
     
     public void P1Score(){
