@@ -16,14 +16,11 @@ public class TennisGame2 implements TennisGame
 
     public String getScore(){
         String score = "";
+        score = normal(score);
         score = tie(score);
         score = deuce(score);
         
-        score = normal(score);
-        score = normal1(score);
         
-        score = normal2(score);
-        score = normal3(score);
         
         score = advantage(score);
         
@@ -56,35 +53,14 @@ public class TennisGame2 implements TennisGame
 		return score;
 	}
 
-	private String normal3(String score) {
-		if (P2point>P1point && P2point < 4)
-        {
-            score = getLiteral(P1point) + "-" + getLiteral(P2point);
-        }
-		return score;
-	}
 
-	private String normal2(String score) {
-		if (P1point>P2point && P1point < 4)
-        {
-            score = getLiteral(P1point) + "-" + getLiteral(P2point);
-        }
-		return score;
-	}
-
-	private String normal1(String score) {
-		if (P2point > 0 && P1point==0)
-        {
-            score = getLiteral(P1point) + "-" + getLiteral(P2point);
-        }
-		return score;
-	}
 
 	private String normal(String score) {
 		int auxP1Point = P1point;
-		if (auxP1Point > 0 && P2point==0)
+		int auxP2Point = P2point;
+		if (auxP1Point != auxP2Point && auxP2Point+auxP1Point!=0)
         {            
-            score =  getLiteral(auxP1Point) + "-" + getLiteral(P2point);
+            score =  getLiteral(auxP1Point) + "-" + getLiteral(auxP2Point);
         }
 		return score;
 	}
