@@ -59,15 +59,7 @@ public class TennisGame2 implements TennisGame
 	private String normal3(String score) {
 		if (P2point>P1point && P2point < 4)
         {
-            if (P2point==2)
-                P2res="Thirty";
-            if (P2point==3)
-                P2res="Forty";
-            if (P1point==1)
-                P1res="Fifteen";
-            if (P1point==2)
-                P1res="Thirty";
-            score = P1res + "-" + P2res;
+            score = getLiteral(P1point) + "-" + getLiteral(P2point);
         }
 		return score;
 	}
@@ -75,15 +67,7 @@ public class TennisGame2 implements TennisGame
 	private String normal2(String score) {
 		if (P1point>P2point && P1point < 4)
         {
-            if (P1point==2)
-                P1res="Thirty";
-            if (P1point==3)
-                P1res="Forty";
-            if (P2point==1)
-                P2res="Fifteen";
-            if (P2point==2)
-                P2res="Thirty";
-            score = P1res + "-" + P2res;
+            score = getLiteral(P1point) + "-" + getLiteral(P2point);
         }
 		return score;
 	}
@@ -91,15 +75,7 @@ public class TennisGame2 implements TennisGame
 	private String normal1(String score) {
 		if (P2point > 0 && P1point==0)
         {
-            if (P2point==1)
-                P2res = "Fifteen";
-            if (P2point==2)
-                P2res = "Thirty";
-            if (P2point==3)
-                P2res = "Forty";
-            
-            P1res = "Love";
-            score = P1res + "-" + P2res;
+            score = getLiteral(P1point) + "-" + getLiteral(P2point);
         }
 		return score;
 	}
@@ -108,20 +84,22 @@ public class TennisGame2 implements TennisGame
 		int auxP1Point = P1point;
 		if (auxP1Point > 0 && P2point==0)
         {            
-            P2res = "Love";
-            score =  getLiteral(auxP1Point) + "-" + P2res;
+            score =  getLiteral(auxP1Point) + "-" + getLiteral(P2point);
         }
 		return score;
 	}
 
 	private String getLiteral(int auxP1Point) {
+		String resultado="";
+		if (auxP1Point==0)
+			resultado = "Love";
 		if (auxP1Point==1)
-		    P1res = "Fifteen";
+			resultado = "Fifteen";
 		if (auxP1Point==2)
-		    P1res = "Thirty";
+			resultado = "Thirty";
 		if (auxP1Point==3)
-		    P1res = "Forty";
-		return P1res;
+			resultado = "Forty";
+		return resultado;
 	}
 
 	private String deuce(String score) {
