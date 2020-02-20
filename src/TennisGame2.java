@@ -14,16 +14,11 @@ public class TennisGame2 implements TennisGame
         this.player2Name = player2Name;
     }
 
-    public String getScore(){
+    public String getLiteralScore(){
         String score = "";
         if (P1point == P2point && P1point < 4)
         {
-            if (P1point==0)
-                score = "Love";
-            if (P1point==1)
-                score = "Fifteen";
-            if (P1point==2)
-                score = "Thirty";
+            score = getLiteral(score);
             score += "-All";
         }
         if (P1point==P2point && P1point>=3)
@@ -99,6 +94,16 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String getLiteral(String score) {
+		if (P1point==0)
+		    score = "Love";
+		if (P1point==1)
+		    score = "Fifteen";
+		if (P1point==2)
+		    score = "Thirty";
+		return score;
+	}
     
     public void SetP1Score(int number){
         
